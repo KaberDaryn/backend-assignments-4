@@ -252,5 +252,13 @@ curl -X POST http://localhost:3000/api/participants \
 ::contentReference[oaicite:0]{index=0}
 ```
 
-<img width="1920" height="1080" alt="Снимок экрана (3)" src="https://github.com/user-attachments/assets/fb542d17-5966-44a6-9e7d-148e1feb7b43" />
+<img width="1104" height="556" alt="{5135051A-FE1C-45B4-B007-A47021B27BD5}" src="https://github.com/user-attachments/assets/9fa7bd66-e044-44dd-a8f9-0703bd650b02" />
+<img width="1090" height="841" alt="{98781EF2-65EE-46AD-B49C-BA548C9CC52C}" src="https://github.com/user-attachments/assets/2cf4e498-7758-489b-9067-c374d18c34fc" />
+<img width="1915" height="940" alt="{9F51C556-751C-4B78-AA10-6CE9C3343BF0}" src="https://github.com/user-attachments/assets/9ffccf86-36fc-4969-9f27-cc50528205bb" />
+<img width="1910" height="1020" alt="{DCDCB320-3ED0-4E77-A572-9AC85D753207}" src="https://github.com/user-attachments/assets/19c9c258-d237-4db4-8603-41559920ac03" />
+
+
+
+
+
 
