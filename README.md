@@ -251,5 +251,6 @@ curl -X POST http://localhost:3000/api/participants \
 * Project follows MVC and security requirements of Assignment 4
 ::contentReference[oaicite:0]{index=0}
 ```
-<img width="1512" height="702" alt="{A45B841B-1C2C-49C0-A920-C30D4DF67ED5}" src="https://github.com/user-attachments/assets/b303c550-f502-482e-ae69-eeadfd91109e" />
+
+<img width="1920" height="1080" alt="Снимок экрана (3)" src="https://github.com/user-attachments/assets/fb542d17-5966-44a6-9e7d-148e1feb7b43" />
 
