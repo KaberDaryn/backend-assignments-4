@@ -3,93 +3,182 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Social Initiatives — Events</title>
+    <title>Social Initiatives — Full Stack</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <header class="hero">
+      <div class="container hero-content">
+        <div>
+          <p class="eyebrow">Social Initiatives Platform</p>
+          <h1>Plan, publish, and manage community-driven events.</h1>
+          <p class="hero-subtitle">
+            Authenticate, browse initiatives, and keep your participants connected — all in one place.
+          </p>
+        </div>
+        <div class="hero-card">
+          <h2>Session</h2>
+          <p class="muted" id="session-status">Not signed in</p>
+          <div class="token-box">
+            <span class="label">JWT token</span>
+            <code id="token-preview">—</code>
+          </div>
+          <button id="logout" class="ghost" type="button">Logout</button>
+        </div>
+      </div>
+    </header>
+
     <main class="container">
-      <h1>Social Initiatives — Events</h1>
-
-      <section class="card">
-        <h2>Create Event</h2>
-        <p class="muted">GET requests are public. Creating an event requires an admin JWT token.</p>
-
-
-        <form id="event-form">
-          <div class="row">
-            <label>
-              Title (required)
-              <input name="title" type="text" required />
-            </label>
-            <label>
-              Date (required)
-              <input name="date" type="datetime-local" required />
-            </label>
+      <section class="grid">
+        <div class="card">
+          <div class="header-row">
+            <h2>Authentication</h2>
+            <div class="toggle">
+              <button class="toggle-btn active" data-mode="login" type="button">Login</button>
+              <button class="toggle-btn" data-mode="register" type="button">Register</button>
+            </div>
           </div>
+          <p class="muted">Create an account, then login to receive a JWT used for admin actions.</p>
 
-          <div class="row">
+          <form id="auth-form">
             <label>
-              Location (required)
-              <input name="location" type="text" required />
+              Email
+              <input name="email" type="email" required placeholder="you@example.com" />
             </label>
             <label>
-              Organizer (required)
-              <input name="organizer" type="text" required />
+              Password
+              <input name="password" type="password" required minlength="6" placeholder="••••••" />
             </label>
-          </div>
+            <div class="actions">
+              <button type="submit">Continue</button>
+              <span id="auth-message" class="message" aria-live="polite"></span>
+            </div>
+          </form>
+        </div>
 
-          <label>
-            Description
-            <textarea name="description" rows="3" placeholder="Optional"></textarea>
-          </label>
+        <div class="card">
+          <h2>Create Event (Admin)</h2>
+          <p class="muted">Only admins can create or edit events. Public users can browse below.</p>
+          <form id="event-form">
+            <div class="row">
+              <label>
+                Title (required)
+                <input name="title" type="text" required />
+              </label>
+              <label>
+                Date (required)
+                <input name="date" type="datetime-local" required />
+              </label>
+            </div>
 
-          <div class="row">
+            <div class="row">
+              <label>
+                Location (required)
+                <input name="location" type="text" required />
+              </label>
+              <label>
+                Organizer (required)
+                <input name="organizer" type="text" required />
+              </label>
+            </div>
+
             <label>
-              Type
-              <select name="type">
-                <option value="volunteering">volunteering</option>
-                <option value="fundraising">fundraising</option>
-                <option value="awareness">awareness</option>
-                <option value="community">community</option>
+              Description
+              <textarea name="description" rows="3" placeholder="Optional"></textarea>
+            </label>
+
+            <div class="row">
+              <label>
+                Type
+                <select name="type">
+                  <option value="volunteering">volunteering</option>
+                  <option value="fundraising">fundraising</option>
+                  <option value="awareness">awareness</option>
+                  <option value="community">community</option>
+                </select>
+              </label>
+              <label>
+                Capacity
+                <input name="capacity" type="number" min="1" value="50" />
+              </label>
+              <label>
+                Status
+                <select name="status">
+                  <option value="draft">draft</option>
+                  <option value="published" selected>published</option>
+                  <option value="cancelled">cancelled</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              Tags (comma-separated)
+              <input name="tags" type="text" placeholder="charity, community" />
+            </label>
+
+            <div class="actions">
+              <button type="submit">Create</button>
+              <span id="event-message" class="message" aria-live="polite"></span>
+            </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h2>Add Participant (Admin)</h2>
+          <p class="muted">Link participants to events to keep data relationally consistent.</p>
+          <form id="participant-form">
+            <label>
+              Event (required)
+              <select name="event" id="event-select" required>
+                <option value="">Select event</option>
               </select>
             </label>
-            <label>
-              Capacity
-              <input name="capacity" type="number" min="1" value="50" />
-            </label>
+            <div class="row">
+              <label>
+                Name
+                <input name="name" type="text" required />
+              </label>
+              <label>
+                Email
+                <input name="email" type="email" required />
+              </label>
+            </div>
             <label>
               Status
               <select name="status">
-                <option value="draft">draft</option>
-                <option value="published" selected>published</option>
+                <option value="registered">registered</option>
+                <option value="checked-in">checked-in</option>
                 <option value="cancelled">cancelled</option>
               </select>
             </label>
-          </div>
-
-          <label>
-            Tags (comma-separated)
-            <input name="tags" type="text" placeholder="charity, community" />
-          </label>
-
-          <label>
-            Admin JWT Token (required)
-            <input name="token" type="text" placeholder="Paste token (without 'Bearer ')" />
-          </label>
-
-          <div class="actions">
-            <button type="submit">Create</button>
-            <span id="form-message" class="message" aria-live="polite"></span>
-          </div>
-        </form>
+            <div class="actions">
+              <button type="submit">Add Participant</button>
+              <span id="participant-message" class="message" aria-live="polite"></span>
+            </div>
+          </form>
+        </div>
       </section>
 
       <section class="card">
         <div class="header-row">
-          <h2>Events</h2>
-          <button id="refresh">Refresh</button>
+          <div>
+            <h2>Upcoming Events</h2>
+            <p class="muted">Public list of events pulled from the API.</p>
+          </div>
+          <button id="refresh-events" type="button">Refresh</button>
         </div>
         <div id="events" class="list"></div>
+      </section>
+
+      <section class="card">
+        <div class="header-row">
+          <div>
+            <h2>Participants</h2>
+            <p class="muted">Latest participant registrations and their linked event.</p>
+          </div>
+          <button id="refresh-participants" type="button">Refresh</button>
+        </div>
+        <div id="participants" class="list"></div>
       </section>
     </main>
 
