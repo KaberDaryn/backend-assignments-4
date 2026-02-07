@@ -1,9 +1,9 @@
-# Social Initiatives Platform API (Assignment 4)
+# Social Initiatives Platform Full-Stack App (Final Project)
 
-Backend REST API for a Social Initiatives Platform built with **Node.js + Express + MongoDB (Mongoose)**.
-The project is refactored into a **modular MVC architecture** and secured with **bcrypt** password hashing and **JWT-based Role-Based Access Control (RBAC)**.
+Full-stack Social Initiatives Platform built with **Node.js + Express + MongoDB (Mongoose)** and a responsive frontend.
+The project follows a **modular MVC architecture** and is secured with **bcrypt** password hashing and **JWT-based Role-Based Access Control (RBAC)**.
 
-## Key Features (Assignment 4 Requirements)
+## Key Features (Final Project Requirements)
 - **MVC architecture**: `models/`, `controllers/`, `routes/`, `middleware/`
 - **Two related resources**:
   - **Event** (primary object)
@@ -16,6 +16,10 @@ The project is refactored into a **modular MVC architecture** and secured with *
 - **RBAC**
   - **GET** requests are public (no token required)
   - **POST / PUT / DELETE** require **admin** role + valid JWT
+- **Frontend integration**
+  - Login/register flow that stores a JWT in local storage
+  - Admin-only forms for events and participants
+  - Public, responsive dashboard for events and participants
 
 ---
 
@@ -48,7 +52,7 @@ The project is refactored into a **modular MVC architecture** and secured with *
 │   ├── User.js
 │   ├── Event.js
 │   └── Participant.js
-├── public/                 # (optional for Assignment 3 demo)
+├── public/                 # Full-stack frontend (HTML/CSS/JS)
 │   ├── index.html
 │   ├── styles.css
 │   └── app.js
@@ -89,6 +93,7 @@ npm run dev
 Default:
 
 * Server runs on: `http://localhost:3000`
+* Frontend runs at: `http://localhost:3000/`
 
 ---
 
@@ -131,6 +136,8 @@ Header:
 ```
 Authorization: Bearer <TOKEN>
 ```
+
+The frontend stores the token in local storage and displays the current session status and role.
 
 ---
 
@@ -248,7 +255,7 @@ curl -X POST http://localhost:3000/api/participants \
 
 * `.env` is excluded via `.gitignore`
 * `.env.example` is provided for configuration
-* Project follows MVC and security requirements of Assignment 4
+* Project follows MVC and security requirements of the Final Project
 ::contentReference[oaicite:0]{index=0}
 ```
 
@@ -256,7 +263,6 @@ curl -X POST http://localhost:3000/api/participants \
 <img width="1090" height="841" alt="{98781EF2-65EE-46AD-B49C-BA548C9CC52C}" src="https://github.com/user-attachments/assets/2cf4e498-7758-489b-9067-c374d18c34fc" />
 <img width="1915" height="940" alt="{9F51C556-751C-4B78-AA10-6CE9C3343BF0}" src="https://github.com/user-attachments/assets/9ffccf86-36fc-4969-9f27-cc50528205bb" />
 <img width="1910" height="1020" alt="{DCDCB320-3ED0-4E77-A572-9AC85D753207}" src="https://github.com/user-attachments/assets/19c9c258-d237-4db4-8603-41559920ac03" />
-
 
 
 
